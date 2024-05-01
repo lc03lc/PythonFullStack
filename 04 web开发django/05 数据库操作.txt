@@ -1,0 +1,62 @@
+ORM操作
+    -1. 创建、修改、删除数据库中的表
+    -2. 操作表中的数据（不用SQL语句）
+
+1. 创建数据库
+    create database django DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+
+2. django连接数据库
+    在settings.py文件中进行配置和修改
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',   # 内部引擎，连接各种数据库
+                'NAME': 'dbname',                       # 数据库名称
+                'USER': 'root',
+                'PASSWORD': 'xxx',
+                'HOST': '',                             # 数据库的主机地址
+                'PORT': '',
+            }
+        }
+
+3. django操作表
+    -1. 创建表
+        -1. 在models.py中，创建类可以自动生成sql语句创建表格
+                class UserInfo(models.Model):
+                    name = models.CharField(max_length=32)      # 字符串类型
+                    password = models.CharField(max_length=64)  # 字符串类型
+                    age = models.IntegerField()                 # 整数类型
+            类名对应表名，变量对应表内数据
+        -2. 执行 python manage.py makemigrations; python manage.py migrate
+    -2. 删除表
+        -1. 在model.py中，把对应的类删除
+        -2. 执行 python manage.py makemigrations; python manage.py migrate
+    -3. 修改表
+        -1. 要删除某一列，直接删除变量重新执行
+        -2. 要新增一列时，由于已存在的列中可能有数据，所以新增列必须要指定一个默认值或者允许为空
+
+4. 增删查改
+    -1. 增
+        例: Department.objects.create(title='销售部')
+            UserInfo.objects.create(name='张三', password='123', age=19)
+    -2. 删
+        例: UserInfo.objects.filter(age=19).delete()
+            Department.objects.all().delete()
+    -3. 查
+        # data_list = [行,行,行] QuerySet类型，每一行都是一个对象，封装了该行的每一列数据
+        例:  data_list = UserInfo.objects.all()
+            data_list = UserInfo.objects.filter(age=18)
+    -4. 改
+        例:  UserInfo.objects.all().update(password='999')
+            UserInfo.objects.filter(age=18).update()
+
+5. 条件搜索
+    -1. 数字
+        - ....filter(id=12)         # 等于
+        - ....filter(id__gt=12)     # 大于
+        - ....filter(id_gte=12)     # 大于等于
+        - ....filter(id_lt=12)      # 小于
+        - ....filter(id_lte=12)     # 小于等于
+    -2. 字符串
+        - ....filter(str_startwith='xxx')
+        - ....filter(str_endwith='xxx')
+        - ....filter(str_contains='xxx')

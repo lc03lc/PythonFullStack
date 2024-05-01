@@ -1,0 +1,15 @@
+1. 创建子目录命令: python manage.py startapp 子目录名称
+
+2. 配置
+    -1. settings.py中INSTALLED_APPS列表添加一项'子目录名称'
+    -2. urls.py中添加试图与函数的对应关系
+    -3. 对应views.py中编写视图函数
+
+3. Django中的模块
+    -1. Model 数据层，处理与数据相关的事物
+    -2. View  视图层，用来处理用户发出的请求
+    -3. Template 模板层，通过视图渲染html模板，得到动态的前端页面
+    -4. Url   网站的入口，关联到对应视图函数，访问网址对应一个函数
+    -5. Forms 表单，用于浏览器的数据提交和验证
+    -6. Admin 后台， 对提交数据进行管理
+    -7. Settings 配置文件

@@ -1,0 +1,14 @@
+1. request是一个对象，封装了用户发送过来所有请求相关数据
+    -1. 获取请求方式（GET/POST）
+        request.method
+    -2. 在url上传递参数
+        request.GET
+    -3. 在请求体中获取数据
+        request.POST
+
+2. 响应
+    -1. HttpResponse
+    -2. render(request, HTML)
+    -3. redirect
+
+注意： HTML表单中需要添加 {% csrf_token %} 进行校验

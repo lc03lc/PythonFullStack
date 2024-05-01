@@ -1,0 +1,24 @@
+1. 模板
+    -1. views.py中，视图函数return一个render对应的html模板
+
+    -2. 子目录中创建templates文件夹，将对应的html文件存在templates文件夹中
+        - 优先在当前目录中的templates中找，再按照APP的注册顺序在其他文件中搜索
+
+2. 静态文件
+    -1. 静态文件（img、CSS、js）必须存放在子目录中的static文件夹中
+    -2. html文件中通过{% load static %}加载静态文件，通过{% static 'address' %}调用静态文件
+
+3. 模板语法
+    HTML中的占位符，由数据对占位符替换
+    -1. 在views.py中定义变量，并通过render字典传递，在html中使用{{}}进行占位
+    -2. 当变量为列表或字典时，html中需要通过var.index（例如name.0、dict.key）访问列表或字典
+    -3. 循环遍历列表或字典，可用如下方法
+        {% for item in n2 %}
+            <span>{{ item }}</span>
+        {% endfor %}
+        <ul>
+            {% for k,v in n3.items %}
+                <li>{{ k }} = {{ v }}</li>
+            {% endfor %}
+        </ul>
+
