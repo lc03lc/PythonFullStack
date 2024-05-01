@@ -1,0 +1,2 @@
+# PythonFullStack
+Notes of Python
